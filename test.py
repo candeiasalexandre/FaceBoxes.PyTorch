@@ -13,8 +13,8 @@ from models.faceboxes import FaceBoxes
 from utils.box_utils import decode
 from utils.timer import Timer
 
-import sys
-sys.path.append('/home/candeiasalexandre/Libs/FaceBoxes.PyTorch')
+#import sys
+#sys.path.append('/home/candeiasalexandre/Libs/FaceBoxes.PyTorch')
 
 
 parser = argparse.ArgumentParser(description='FaceBoxes')
@@ -142,7 +142,7 @@ if __name__ == '__main__':
         # do NMS
         dets = np.hstack((boxes, scores[:, np.newaxis])).astype(np.float32, copy=False)
         #keep = py_cpu_nms(dets, args.nms_threshold)
-        keep = nms(dets, args.nms_threshold,force_cpu=args.cpu)
+        keep = nms(dets, args.nms_threshold, force_cpu=args.cpu)
         dets = dets[keep, :]
 
         # keep top-K faster NMS
