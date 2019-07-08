@@ -18,7 +18,7 @@ class PriorBox(object):
         anchors = []
         for k, f in enumerate(self.feature_maps):
             min_sizes = self.min_sizes[k]
-            for i, j in product(range(f[0]), range(f[1])):
+            for i, j in product(range(int(f[0])), range(int(f[1]))):
                 for min_size in min_sizes:
                     s_kx = min_size / self.image_size[1]
                     s_ky = min_size / self.image_size[0]
