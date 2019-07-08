@@ -1,4 +1,4 @@
-#https://github.com/zisianw/FaceBoxes.PyTorch/issues/5
+#https://github.com/zisianw/FaceBoxes.PyTorch/issues/5 - added to work on python2 - there was a problem in tensors shape
 from __future__ import print_function, division
 import torch
 from itertools import product as product
