@@ -2,6 +2,8 @@ import torch
 from itertools import product as product
 import numpy as np
 from math import ceil
+
+#https://github.com/zisianw/FaceBoxes.PyTorch/issues/5
 from __future__ import print_function, division
 
 class PriorBox(object):
