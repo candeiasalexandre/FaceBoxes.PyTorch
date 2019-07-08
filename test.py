@@ -13,6 +13,10 @@ from models.faceboxes import FaceBoxes
 from utils.box_utils import decode
 from utils.timer import Timer
 
+import sys
+sys.path.append('/home/candeiasalexandre/Libs/FaceBoxes.PyTorch')
+
+
 parser = argparse.ArgumentParser(description='FaceBoxes')
 
 parser.add_argument('-m', '--trained_model', default='weights/FaceBoxes.pth',

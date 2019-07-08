@@ -27,15 +27,16 @@ def center_size(boxes):
 
 
 def intersect(box_a, box_b):
-    """ We resize both tensors to [A,B,2] without new malloc:
-    [A,2] -> [A,1,2] -> [A,B,2]
-    [B,2] -> [1,B,2] -> [A,B,2]
-    Then we compute the area of intersect between box_a and box_b.
-    Args:
-      box_a: (tensor) bounding boxes, Shape: [A,4].
-      box_b: (tensor) bounding boxes, Shape: [B,4].
-    Return:
-      (tensor) intersection area, Shape: [A,B].
+    """
+        We resize both tensors to [A,B,2] without new malloc:
+        [A,2] -> [A,1,2] -> [A,B,2]
+        [B,2] -> [1,B,2] -> [A,B,2]
+        Then we compute the area of intersect between box_a and box_b.
+        Args:
+          box_a: (tensor) bounding boxes, Shape: [A,4].
+          box_b: (tensor) bounding boxes, Shape: [B,4].
+        Return:
+          (tensor) intersection area, Shape: [A,B].
     """
     A = box_a.size(0)
     B = box_b.size(0)
@@ -48,16 +49,17 @@ def intersect(box_a, box_b):
 
 
 def jaccard(box_a, box_b):
-    """Compute the jaccard overlap of two sets of boxes.  The jaccard overlap
-    is simply the intersection over union of two boxes.  Here we operate on
-    ground truth boxes and default boxes.
-    E.g.:
-        A ∩ B / A ∪ B = A ∩ B / (area(A) + area(B) - A ∩ B)
-    Args:
-        box_a: (tensor) Ground truth bounding boxes, Shape: [num_objects,4]
-        box_b: (tensor) Prior boxes from priorbox layers, Shape: [num_priors,4]
-    Return:
-        jaccard overlap: (tensor) Shape: [box_a.size(0), box_b.size(0)]
+    """
+        Compute the jaccard overlap of two sets of boxes.  The jaccard overlap
+        is simply the intersection over union of two boxes.  Here we operate on
+        ground truth boxes and default boxes.
+        E.g.:
+            A intersect B / A union B = A intersect B / (area(A) + area(B) - A intersect B)
+        Args:
+            box_a: (tensor) Ground truth bounding boxes, Shape: [num_objects,4]
+            box_b: (tensor) Prior boxes from priorbox layers, Shape: [num_priors,4]
+        Return:
+            jaccard overlap: (tensor) Shape: [box_a.size(0), box_b.size(0)]
     """
     inter = intersect(box_a, box_b)
     area_a = ((box_a[:, 2]-box_a[:, 0]) *
