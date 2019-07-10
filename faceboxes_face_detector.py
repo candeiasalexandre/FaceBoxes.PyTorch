@@ -146,9 +146,9 @@ class FaceBoxesDetector():
 
 
 if __name__ == "__main__":
-    deteta_caras = FaceBoxesDetector("/home/candeiasalexandre/Libs/FaceBoxes.PyTorch/weights/FaceBoxes.pth", True)
+    deteta_caras = FaceBoxesDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/FaceBoxes.pth", True)
 
-    image_path = "/home/candeiasalexandre/Libs/FaceBoxes.PyTorch/data/foto_eu.jpg"
+    image_path = "/home/candeiasalexandre/code/FaceBoxes.PyTorch/data/foto_eu.jpg"
     img = cv2.imread(image_path, cv2.IMREAD_COLOR)
     boxes, scores, valid = deteta_caras.detect(img)
 
