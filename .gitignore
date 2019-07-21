@@ -2,3 +2,4 @@ data/*
 *.pyc
 eval/*
 .vscode/
+*.so
