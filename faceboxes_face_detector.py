@@ -12,7 +12,7 @@ import cv2
 from models.faceboxes import FaceBoxes
 from utils.box_utils import decode
 from utils.timer import Timer
-
+from face_landmarks import MenpoDlibLandmarkDetector
 
 class FaceBoxesDetector():
 
@@ -147,13 +147,21 @@ class FaceBoxesDetector():
 
 if __name__ == "__main__":
     deteta_caras = FaceBoxesDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/FaceBoxes.pth", True)
+    landmark_detector = MenpoDlibLandmarkDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/dlib_pre_trained/shape_predictor_68_face_landmarks.dat")
 
     image_path = "/home/candeiasalexandre/code/FaceBoxes.PyTorch/data/foto_eu.jpg"
     img = cv2.imread(image_path, cv2.IMREAD_COLOR)
     boxes, scores, valid = deteta_caras.detect(img)
+    
 
     img_rect = cv2.rectangle(img, (boxes[0][0], boxes[0][1]), (boxes[0][2], boxes[0][3]), (255,0,0))
+    landmarks = landmark_detector.detect(img, boxes[0])
 
+    for n in range(0, 68):
+        x = landmarks.part(n).x
+        y = landmarks.part(n).y
+        img_rect = cv2.circle(img_rect, (x,y), 2, (255,0,0))
+        
     cv2.imshow('image', img_rect)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
