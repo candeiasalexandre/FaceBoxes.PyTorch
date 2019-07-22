@@ -1,7 +1,7 @@
 import dlib
 import numpy as np
 import cv2
-class MenpoDlibLandmarkDetector():
+class DlibLandmarkDetector():
 
     def __init__(self, model_path):
         self.face_landmark_detector = dlib.shape_predictor(model_path)
