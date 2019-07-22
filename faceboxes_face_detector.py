@@ -157,11 +157,9 @@ if __name__ == "__main__":
     img_rect = cv2.rectangle(img, (boxes[0][0], boxes[0][1]), (boxes[0][2], boxes[0][3]), (255,0,0))
     landmarks = landmark_detector.detect(img, boxes[0])
 
-    for n in range(0, 68):
-        x = landmarks.part(n).x
-        y = landmarks.part(n).y
-        img_rect = cv2.circle(img_rect, (x,y), 2, (255,0,0))
-        
+    for landmark in landmarks:
+        img_rect = cv2.circle(img_rect, (int(landmark[0]),int(landmark[1])), 2, (255,0,0))
+
     cv2.imshow('image', img_rect)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
