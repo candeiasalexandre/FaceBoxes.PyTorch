@@ -16,4 +16,4 @@ class DlibLandmarkDetector():
             y = landmarks.part(n).y
             landmarks_np[n,0] = x
             landmarks_np[n,1] = y
-        return landmarks_np
+        return landmarks_np, True

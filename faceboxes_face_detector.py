@@ -16,7 +16,7 @@ from face_landmarks import DlibLandmarkDetector
 
 class FaceBoxesDetector():
 
-    def __init__(self, model_path, cpu, confidence_threshold=0.05, top_k=5000, nms_threshold=0.3, keep_top_k=750, resize_scale=1):
+    def __init__(self, model_path, cpu, score_threshold=0.9, confidence_threshold=0.05, top_k=5000, nms_threshold=0.3, keep_top_k=750, resize_scale=1):
         """[summary]
         
         Arguments:
@@ -45,6 +45,7 @@ class FaceBoxesDetector():
         self.keep_top_k = keep_top_k
         self.resize_scale = resize_scale
         self.cpu = cpu
+        self.score_threshold = score_threshold
     
     def _check_keys(self, model, pretrained_state_dict):
         ckpt_keys = set(pretrained_state_dict.keys())
@@ -136,8 +137,9 @@ class FaceBoxesDetector():
         boxes = []
         scores = []
         for k in range(dets.shape[0]):
-            boxes.append((dets[k, 0], dets[k, 1], dets[k, 2],  dets[k, 3]))
-            scores.append(dets[k, 4])
+            if dets[k,4] >= self.score_threshold:
+                boxes.append((dets[k, 0], dets[k, 1], dets[k, 2],  dets[k, 3]))
+                scores.append(dets[k, 4])
         
         if len(boxes) > 0:
             return boxes, scores, True
@@ -146,7 +148,7 @@ class FaceBoxesDetector():
 
 
 if __name__ == "__main__":
-    deteta_caras = FaceBoxesDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/FaceBoxes.pth", True)
+    deteta_caras = FaceBoxesDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/FaceBoxes.pth", cpu=True)
     landmark_detector = DlibLandmarkDetector("/home/candeiasalexandre/code/FaceBoxes.PyTorch/weights/dlib_pre_trained/shape_predictor_68_face_landmarks.dat")
 
     image_path = "/home/candeiasalexandre/code/FaceBoxes.PyTorch/data/foto_eu.jpg"
