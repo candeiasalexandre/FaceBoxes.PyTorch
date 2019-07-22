@@ -154,14 +154,21 @@ if __name__ == "__main__":
     image_path = "/home/candeiasalexandre/code/FaceBoxes.PyTorch/data/foto_eu.jpg"
     img = cv2.imread(image_path, cv2.IMREAD_COLOR)
     boxes, scores, valid = deteta_caras.detect(img)
-    
+    if not valid:
+        print("No face")
+        exit(-1)
+    print("Boxes: ", boxes)
+    print("Scores: ", scores)
 
     img_rect = cv2.rectangle(img, (boxes[0][0], boxes[0][1]), (boxes[0][2], boxes[0][3]), (255,0,0))
-    landmarks = landmark_detector.detect(img, boxes[0])
+    landmarks, valid = landmark_detector.detect(img, boxes[0])
+    if not valid:
+        print("No Landmarks")
+        exit(-1)
 
     for landmark in landmarks:
-        img_rect = cv2.circle(img_rect, (int(landmark[0]),int(landmark[1])), 2, (255,0,0))
-
+        img_rect = cv2.circle(img_rect, (int(landmark[0]), int(landmark[1])), 2, (255,0,0))
+    
     cv2.imshow('image', img_rect)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
