@@ -37,6 +37,7 @@ Please cite the paper in your publications if it helps your research:
 
 ## Installation
 1. Install [PyTorch](https://pytorch.org/) >= v1.0.0 following official instruction.
+Install dlib for python with pip.
 
 2. Clone this repository. We will call the cloned directory as `$FaceBoxes_ROOT`.
 ```Shell
