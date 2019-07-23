@@ -2,7 +2,9 @@
 
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
-By [Zisian Wong](https://github.com/zisianw), [Shifeng Zhang](http://www.cbsr.ia.ac.cn/users/sfzhang/)
+Changed by [Alexandre Candeias] (https://candeiasalexandre.github.io) to add python2 support and dlib face landmark detection.
+
+Based on FaceBoxes By [Zisian Wong](https://github.com/zisianw), [Shifeng Zhang](http://www.cbsr.ia.ac.cn/users/sfzhang/)
 
 A [PyTorch](https://pytorch.org/) implementation of [FaceBoxes: A CPU Real-time Face Detector with High Accuracy](https://arxiv.org/abs/1708.05234). The official code in Caffe can be found [here](https://github.com/sfzhang15/FaceBoxes).
 
@@ -24,10 +26,14 @@ Please cite the paper in your publications if it helps your research:
     }
 
 ### Contents
-- [Installation](#installation)
-- [Training](#training)
-- [Evaluation](#evaluation)
-- [References](#references)
+- [FaceBoxes in PyTorch](#FaceBoxes-in-PyTorch)
+  - [Performance](#Performance)
+  - [Citation](#Citation)
+    - [Contents](#Contents)
+  - [Installation](#Installation)
+  - [Training](#Training)
+  - [Evaluation](#Evaluation)
+  - [References](#References)
 
 ## Installation
 1. Install [PyTorch](https://pytorch.org/) >= v1.0.0 following official instruction.
@@ -42,7 +48,11 @@ git clone https://github.com/zisianw/FaceBoxes.PyTorch.git
 ./make.sh
 ```
 
-_Note: Codes are based on Python 3+._
+4. Add folder to Python:
+```
+  export PYTHONPATH="${PYTHONPATH}:/my/other/path"
+```
+
 
 ## Training
 1. Download [WIDER FACE](http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/index.html) dataset, place the images under this directory:
@@ -86,4 +96,5 @@ python3 test.py --cpu
 - A huge thank you to SSD ports in PyTorch that have been helpful:
   * [ssd.pytorch](https://github.com/amdegroot/ssd.pytorch), [RFBNet](https://github.com/ruinmessi/RFBNet)
 
-  _Note: If you can not download the converted annotations, the provided images and the trained model through the above links, you can download them through [BaiduYun](https://pan.baidu.com/s/1HoW3wbldnbmgW2PS4i4Irw)._
+  _Note: If you can not download the converted annotations, the provided images and the trained model through the above links, you can download them through [BaiduYun](https://pan.baidu.com/s/1HoW3wbldnbmgW2PS4i4Irw).
+
