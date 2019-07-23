@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](LICENSE)
 
-Changed by [Alexandre Candeias] (https://candeiasalexandre.github.io) to add python2 support and dlib face landmark detection.
+Changed by [Alexandre Candeias](https://candeiasalexandre.github.io) to add python2 support and dlib face landmark detection.
 
 Based on FaceBoxes By [Zisian Wong](https://github.com/zisianw), [Shifeng Zhang](http://www.cbsr.ia.ac.cn/users/sfzhang/)
 
